@@ -1,6 +1,7 @@
 import re
 import os
 from rules_lexer import rules
+import cyk_parser
 
 
 file_path = './input_file.txt'
@@ -105,10 +106,11 @@ class Lexer(object):
                 # tok = Token(tok_type, m.group(groupname), self.pos)
                 tok = tok_type
                 self.pos = m.end()
+                """ 
                 if(tok == 'NEWLINE'):
                     return '\n'
                 elif(tok == 'WHITESPACE'):
-                    return ''
+                    return '' """
                 return tok
 
             # if we're here, no rule matched
@@ -127,13 +129,21 @@ class Lexer(object):
 
 if __name__ == '__main__':
 
-    lx = Lexer(rules, skip_whitespace=False)
+    lx = Lexer(rules, skip_whitespace=True)
     # lx.input('tes = _abc + 12*(R4-623902)  ')
     # print(text)
     lx.input(text)
 
+    output = ''
+
     try:
         for tok in lx.tokens():
-            print(tok, end=" ")
+            output += tok + ' '
     except LexerError as err:
         print('LexerError at position %s' % err.pos)
+    
+    print(output)
+
+    CYK = cyk_parser.Parser('grammar.txt', output)
+    CYK.parse()
+    CYK.print_tree()

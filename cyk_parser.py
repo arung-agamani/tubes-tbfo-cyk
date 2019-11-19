@@ -120,14 +120,14 @@ class Parser:
         # print(final_nodes, 'dewf')
         if final_nodes:
             if output:
-                print("The given sentence is contained in the language produced by the given grammar!")
-                print("\nPossible parse(s):")
-            trees = [generate_tree(node) for node in final_nodes]
+                print("Parse success! Sentence is contained in the language.")
+                # print("\nPossible parse(s):")
+            """ trees = [generate_tree(node) for node in final_nodes]
             if output:
                 for tree in trees:
                     print(tree)
             else:
-                return trees
+                return trees """
         else:
             
             print("The given sentence is not contained in the language produced by the given grammar!")

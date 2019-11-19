@@ -1,14 +1,6 @@
-"""
-freg5r
-"""
-# hghrtrg
-
-
-for i in range(5):
-    for j in range(10, 20, 2):
-        if (i*10 > j):
-            print('i lebih besar')
-        elif (i**10 < j):
-            print('j lebih besar')
-        else:
-            print('j dan i sama besar')
+if (a > b) :
+    print("asdf")
+else :
+    # oke
+elif (x == y) :
+    print("apalah")
