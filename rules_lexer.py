@@ -29,7 +29,7 @@ rules = [
     ('\'.+\'', 'STRING'),
     (r'\.', 'WITH_METHOD'),
     (r':', 'COLON'),
-    (r'""".*"""', 'COMMENT'),
+    (r'\"\"\"[a-zA-Z_]*\"\"\"', 'COMMENT'),
     (r'\#.*', 'COMMENT'),
     (r'\n', 'NEWLINE'),
     (r' ', 'WHITESPACE'),
