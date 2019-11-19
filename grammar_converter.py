@@ -1,4 +1,3 @@
-# Global dictionary used for storing the rules.
 RULE_DICT = {}
 
 

@@ -114,8 +114,10 @@ class Parser:
         Print the parse tree starting with the start symbol. Alternatively it returns the string
         representation of the tree(s) instead of printing it.
         """
+        # print(self.grammar, 'grammar')
         start_symbol = self.grammar[0][0]
         final_nodes = [n for n in self.parse_table[-1][0] if n.symbol == start_symbol]
+        # print(final_nodes, 'dewf')
         if final_nodes:
             if output:
                 print("The given sentence is contained in the language produced by the given grammar!")
@@ -127,6 +129,7 @@ class Parser:
             else:
                 return trees
         else:
+            
             print("The given sentence is not contained in the language produced by the given grammar!")
 
 

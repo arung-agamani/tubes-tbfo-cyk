@@ -1,3 +1,7 @@
-S -> 'def' A
-A -> 'func' B
-B -> ':'
+S -> A B
+B -> C D
+D -> E F
+A -> 'FUNC'
+C -> 'OPENBRACKET'
+E -> 'STRING'
+F -> 'CLOSEBRACKET'
