@@ -1,6 +1,2 @@
-if (a > b) :
-    print("asdf")
-else :
-    # oke
-elif (x == y) :
-    print("apalah")
+while a > b :
+    print("a")
