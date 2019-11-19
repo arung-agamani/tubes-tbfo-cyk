@@ -1,5 +1,12 @@
 import re
-import sys
+import os
+from rules_lexer import rules
+
+
+file_path = './input_file.txt'
+
+file = open(file_path, 'r')
+text = file.read()
 
 
 class Token(object):
@@ -98,6 +105,10 @@ class Lexer(object):
                 # tok = Token(tok_type, m.group(groupname), self.pos)
                 tok = tok_type
                 self.pos = m.end()
+                if(tok == 'NEWLINE'):
+                    return '\n'
+                elif(tok == 'WHITESPACE'):
+                    return ''
                 return tok
 
             # if we're here, no rule matched
@@ -115,34 +126,11 @@ class Lexer(object):
 
 
 if __name__ == '__main__':
-    rules = [
-        ('\d+',             'NUMBER'),
-        ('[a-zA-Z_]\w+',    'IDENTIFIER'),
-        ('\+',              'PLUS'),
-        ('\-',              'MINUS'),
-        ('\*',              'MULTIPLY'),
-        ('\/',              'DIVIDE'),
-        ('\(',              'LP'),
-        ('\)',              'RP'),
-        ('=',               'EQUALS'),
-    ]
 
-    rulesDef = [
-        ('def', 'DEF'),
-        ('(print|len|str|int|float)', 'FUNC'),
-        ('\".+\"', 'STRING'),
-        ('\(', 'OPENBRACKET'),
-        ('\)', 'CLOSEBRACKET'),
-        ('\d+', 'NUMBER'),
-        (',', 'COMA'),
-        (' ', 'WHITESPACE'),
-    ]
-
-    lx = Lexer(rulesDef, skip_whitespace=False)
-    lxMath = Lexer(rules, skip_whitespace=True)
+    lx = Lexer(rules, skip_whitespace=False)
     # lx.input('tes = _abc + 12*(R4-623902)  ')
-    lx.input('print("asdf")')
-    lxMath.input('3 + 5')
+    # print(text)
+    lx.input(text)
 
     try:
         for tok in lx.tokens():
