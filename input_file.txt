@@ -1,2 +1,12 @@
-while a > b :
-    print("a")
+from a import b as c
+from a.b import f as that.thing
+
+# a = True
+
+while a :
+    if (a > b) :
+        # do something
+    elif (a < b) :
+        # do another something
+    else :
+        # ya begitulah

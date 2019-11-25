@@ -111,6 +111,8 @@ class Lexer(object):
                     return '\n'
                 elif(tok == 'WHITESPACE'):
                     return '' """
+                if (tok == 'WHITESPACE') :
+                    return ''
                 return tok
 
             # if we're here, no rule matched
@@ -129,7 +131,7 @@ class Lexer(object):
 
 if __name__ == '__main__':
 
-    lx = Lexer(rules, skip_whitespace=True)
+    lx = Lexer(rules, skip_whitespace=False)
     # lx.input('tes = _abc + 12*(R4-623902)  ')
     # print(text)
     lx.input(text)
@@ -138,12 +140,44 @@ if __name__ == '__main__':
 
     try:
         for tok in lx.tokens():
-            output += tok + ' '
+            if tok == '' :
+                output = output
+            else :
+                output += tok + ' '
     except LexerError as err:
         print('LexerError at position %s' % err.pos)
     
-    print(output)
-
-    CYK = cyk_parser.Parser('grammar.txt', output)
-    CYK.parse()
-    CYK.print_tree()
+    # print(output)
+    string_container = output.split('NEWLINE')
+    # print("Splitted string : ")
+    # print(string_container)
+    if_toggle = False
+    for text in string_container :
+        if text == ' ' :
+            print("",end='')
+        else :
+            if text.find('ELIF') != -1 :
+                if if_toggle :
+                    text = 'ELIFTOK' + text
+                # print(text)
+                CYK = cyk_parser.Parser('grammar.txt', text)
+                CYK.parse()
+                CYK.print_tree()
+            elif text.find('ELSE') != -1 :
+                if if_toggle :
+                    text = 'ELIFTOK' + text
+                # print(text)
+                CYK = cyk_parser.Parser('grammar.txt', text)
+                CYK.parse()
+                CYK.print_tree()
+            elif text.find(' IF ') != -1 :
+                # print(text)
+                CYK = cyk_parser.Parser('grammar.txt', text)
+                CYK.parse()
+                CYK.print_tree()
+            else :
+                if_toggle = True
+                # print(text)
+                CYK = cyk_parser.Parser('grammar.txt', text)
+                CYK.parse()
+                CYK.print_tree()

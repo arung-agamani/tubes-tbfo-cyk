@@ -42,6 +42,7 @@ class Parser:
         self.parse_table = None
         self.prods = {}
         self.grammar = None
+        self.sentence = sentence
         if os.path.isfile(grammar):
             self.grammar_from_file(grammar)
         else:
@@ -120,7 +121,7 @@ class Parser:
         # print(final_nodes, 'dewf')
         if final_nodes:
             if output:
-                print("Parse success! Sentence is contained in the language.")
+                print("Parse success! Sentence {} is contained in the language.".format(self.sentence))
                 # print("\nPossible parse(s):")
             """ trees = [generate_tree(node) for node in final_nodes]
             if output:
