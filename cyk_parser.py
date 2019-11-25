@@ -86,6 +86,7 @@ class Parser:
         # self.parse_table[y][x] is the list of nodes in the x+1 cell of y+1 row in the table.
         # That cell covers the word below it and y more words after.
         self.parse_table = [[[] for x in range(length - y)] for y in range(length)]
+        print(len(self.parse_table))
 
         for i, word in enumerate(self.input):
             # Find out which non terminals can generate the terminals in the input string
@@ -132,6 +133,7 @@ class Parser:
         else:
             
             print("The given sentence is not contained in the language produced by the given grammar!")
+            print(self.sentence)
         self.parse_table = []
 
 

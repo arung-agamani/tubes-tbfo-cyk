@@ -150,11 +150,11 @@ if __name__ == '__main__':
     # print(output)
     string_container = output.split('NEWLINE')
     # print("Splitted string : ")
-    # print(string_container)
+    print(string_container)
     if_toggle = False
     # parser = cyk_parser
     for text in string_container :
-        if text == ' ' :
+        if text == ' ' or text == '' :
             print("",end='')
         else :
             if text.find('ELIF') != -1 :
@@ -168,6 +168,7 @@ if __name__ == '__main__':
                 if if_toggle :
                     text = 'ELIFTOK' + text
                 # print(text)
+                if_toggle = False
                 CYK = cyk_parser.Parser('grammar.txt', text)
                 CYK.parse()
                 CYK.print_tree()
