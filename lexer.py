@@ -152,6 +152,7 @@ if __name__ == '__main__':
     # print("Splitted string : ")
     # print(string_container)
     if_toggle = False
+    # parser = cyk_parser
     for text in string_container :
         if text == ' ' :
             print("",end='')
@@ -175,8 +176,8 @@ if __name__ == '__main__':
                 CYK = cyk_parser.Parser('grammar.txt', text)
                 CYK.parse()
                 CYK.print_tree()
-            else :
                 if_toggle = True
+            else :
                 # print(text)
                 CYK = cyk_parser.Parser('grammar.txt', text)
                 CYK.parse()

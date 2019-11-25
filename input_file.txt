@@ -6,6 +6,7 @@ from a.b import f as that.thing
 while a :
     if (a > b) :
         # do something
+        
     elif (a < b) :
         # do another something
     else :

@@ -132,6 +132,7 @@ class Parser:
         else:
             
             print("The given sentence is not contained in the language produced by the given grammar!")
+        self.parse_table = []
 
 
 def generate_tree(node):
