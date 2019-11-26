@@ -1,7 +1,9 @@
 import re
 import os
 from rules_lexer import rules
-import cyk_parser
+import cyk_parser as parser
+import weakref
+import datetime as time
 
 
 file_path = './input_file.txt'
@@ -128,6 +130,11 @@ class Lexer(object):
                 break
             yield tok
 
+CYK = parser.Parser('grammar.txt', " COMMENT ")
+def process(sentence) :
+    CYK.__call__(sentence)
+    CYK.parse()
+    return CYK.print_tree()
 
 if __name__ == '__main__':
 
@@ -150,36 +157,44 @@ if __name__ == '__main__':
     # print(output)
     string_container = output.split('NEWLINE')
     # print("Splitted string : ")
-    print(string_container)
+    # print(string_container)
     if_toggle = False
     # parser = cyk_parser
+
+    a_string = " COMMENT "
+    start_time = time.datetime.now()
+    total_string = len(string_container)
+    total_success = 0
+    print("Parsing {} line(s) of code...".format(total_string))
     for text in string_container :
         if text == ' ' or text == '' :
             print("",end='')
+            total_success += 1
         else :
             if text.find('ELIF') != -1 :
                 if if_toggle :
                     text = 'ELIFTOK' + text
                 # print(text)
-                CYK = cyk_parser.Parser('grammar.txt', text)
-                CYK.parse()
-                CYK.print_tree()
+                if process(text) :
+                    total_success += 1
             elif text.find('ELSE') != -1 :
                 if if_toggle :
                     text = 'ELIFTOK' + text
                 # print(text)
                 if_toggle = False
-                CYK = cyk_parser.Parser('grammar.txt', text)
-                CYK.parse()
-                CYK.print_tree()
+                if process(text) :
+                    total_success += 1
             elif text.find(' IF ') != -1 :
                 # print(text)
-                CYK = cyk_parser.Parser('grammar.txt', text)
-                CYK.parse()
-                CYK.print_tree()
                 if_toggle = True
+                if process(text) :
+                    total_success += 1
             else :
                 # print(text)
-                CYK = cyk_parser.Parser('grammar.txt', text)
-                CYK.parse()
-                CYK.print_tree()
+                if process(text) :
+                    total_success += 1
+    if (total_string == total_success) :
+        print("The file is parsed successfully! No errors detected.")
+    finish_time = time.datetime.now()
+    elapsed_time = finish_time - start_time
+    print("Time elapsed : {} microseconds, or {} miliseconds".format(elapsed_time.microseconds, elapsed_time.microseconds/1000))

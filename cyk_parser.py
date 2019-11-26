@@ -42,6 +42,7 @@ class Parser:
         self.parse_table = None
         self.prods = {}
         self.grammar = None
+        self.input = None
         self.sentence = sentence
         if os.path.isfile(grammar):
             self.grammar_from_file(grammar)
@@ -61,6 +62,10 @@ class Parser:
                     self.parse()
         else:
             self.input = sentence.split()
+            self.sentence = sentence
+
+    def __del__(self):
+        print("Closing parser...")
 
     def grammar_from_file(self, grammar):
         """
@@ -86,7 +91,7 @@ class Parser:
         # self.parse_table[y][x] is the list of nodes in the x+1 cell of y+1 row in the table.
         # That cell covers the word below it and y more words after.
         self.parse_table = [[[] for x in range(length - y)] for y in range(length)]
-        print(len(self.parse_table))
+        # print(len(self.parse_table))
 
         for i, word in enumerate(self.input):
             # Find out which non terminals can generate the terminals in the input string
@@ -99,10 +104,11 @@ class Parser:
             for starting_cell in range(0, length - words_to_consider + 1):
                 for left_size in range(1, words_to_consider):
                     right_size = words_to_consider - left_size
-
+                    left_cell = []
+                    right_cell = []
                     left_cell = self.parse_table[left_size - 1][starting_cell]
                     right_cell = self.parse_table[right_size - 1][starting_cell + left_size]
-
+                    # print(len(left_cell))
                     for rule in self.grammar:
                         left_nodes = [n for n in left_cell if n.symbol == rule[1]]
                         if left_nodes:
@@ -119,10 +125,12 @@ class Parser:
         # print(self.grammar, 'grammar')
         start_symbol = self.grammar[0][0]
         final_nodes = [n for n in self.parse_table[-1][0] if n.symbol == start_symbol]
+        # print(len(final_nodes))
         # print(final_nodes, 'dewf')
         if final_nodes:
             if output:
-                print("Parse success! Sentence {} is contained in the language.".format(self.sentence))
+                # print("Parse success! Sentence {} is contained in the language.".format(self.sentence))
+                return True
                 # print("\nPossible parse(s):")
             """ trees = [generate_tree(node) for node in final_nodes]
             if output:
@@ -134,7 +142,7 @@ class Parser:
             
             print("The given sentence is not contained in the language produced by the given grammar!")
             print(self.sentence)
-        self.parse_table = []
+            return False
 
 
 def generate_tree(node):

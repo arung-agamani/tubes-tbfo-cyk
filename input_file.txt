@@ -1,1 +1,100 @@
-def abc(a,b,c,d,e) :
+from a import b as c
+from ab.bd import a
+
+# a comment
+
+""" this is also a comment
+"""
+
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
+while a :
+    for i in range(2,5) :
+        if (a > b) :
+            for b in something :
+                if (a < b) :
+                    print("something")
+                elif (a >= b) :
+                    print("another something")
+                else :
+                    print("okay then")
