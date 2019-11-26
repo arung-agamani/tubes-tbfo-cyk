@@ -157,8 +157,8 @@ if __name__ == '__main__':
     # print(output)
     string_container = output.split('NEWLINE')
     # print("Splitted string : ")
-    # print(string_container)
-    if_toggle = False
+    print(string_container)
+    if_toggle = 0
     # parser = cyk_parser
 
     a_string = " COMMENT "
@@ -175,7 +175,7 @@ if __name__ == '__main__':
             total_success += 1
         else :
             if text.find('ELIF') != -1 :
-                if if_toggle :
+                if if_toggle > 0 :
                     text = 'ELIFTOK' + text
                 # print(text)
                 if process(text) :
@@ -184,10 +184,10 @@ if __name__ == '__main__':
                     print("Error at line {}.".format(line_counter))
                     total_error += 1
             elif text.find('ELSE') != -1 :
-                if if_toggle :
+                if if_toggle > 0 :
                     text = 'ELIFTOK' + text
                 # print(text)
-                if_toggle = False
+                if_toggle -= 1
                 if process(text) :
                     total_success += 1
                 else :
@@ -195,7 +195,7 @@ if __name__ == '__main__':
                     total_error += 1
             elif text.find(' IF ') != -1 :
                 # print(text)
-                if_toggle = True
+                if_toggle += 1
                 if process(text) :
                     total_success += 1
                 else :

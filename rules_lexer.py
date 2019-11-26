@@ -1,4 +1,7 @@
 rules = [
+    (r'\"\"\"[\w|\s|\d|\(|\)|\{|\}|\[|\]\=|\.|\:|\'|\"|\,]*\"\"\"', 'COMMENT'),
+    (r'\'\'\'[\w|\s|\d|\(|\)|\{|\}|\[|\]\=|\.|\:|\"|\'|\,]*\'\'\'', 'COMMENT'),
+    
     (r'from', 'FROM'),
     (r'import', 'IMPORT'),
     (r'as\s', 'AS'),
@@ -22,10 +25,10 @@ rules = [
     (r'not', 'NOT'),
     (r'and', 'AND'),
     (r'\sor\s', 'OR'),
-    (r'is', 'IS'),
+    (r'is\s', 'IS'),
     (r'with', 'WITH'),
     (r'print', 'PRINT'),
-    (r'len', 'LEN'),
+    #(r'len', 'LEN'),
     (r'str', 'STR'),
     (r'int', 'INT'),
     # (r'float', 'FLOAT'),
@@ -34,7 +37,6 @@ rules = [
     (r'round', 'ROUND'),
     (r'pow', 'POW'),
     (r'input', 'INPUT'),
-    (r'\"\"\"[\w|\s]*\"\"\"', 'COMMENT'),
     (r'\#.*', 'COMMENT'),
     ('\".+\"', 'STRING'),
     ('\'.+\'', 'STRING'),
