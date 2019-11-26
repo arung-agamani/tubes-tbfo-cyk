@@ -165,8 +165,11 @@ if __name__ == '__main__':
     start_time = time.datetime.now()
     total_string = len(string_container)
     total_success = 0
+    total_error = 0
+    line_counter = 1
     print("Parsing {} line(s) of code...".format(total_string))
     for text in string_container :
+        line_counter += 1
         if text == ' ' or text == '' :
             print("",end='')
             total_success += 1
@@ -177,6 +180,9 @@ if __name__ == '__main__':
                 # print(text)
                 if process(text) :
                     total_success += 1
+                else :
+                    print("Error at line {}.".format(line_counter))
+                    total_error += 1
             elif text.find('ELSE') != -1 :
                 if if_toggle :
                     text = 'ELIFTOK' + text
@@ -184,17 +190,28 @@ if __name__ == '__main__':
                 if_toggle = False
                 if process(text) :
                     total_success += 1
+                else :
+                    print("Error at line {}.".format(line_counter))
+                    total_error += 1
             elif text.find(' IF ') != -1 :
                 # print(text)
                 if_toggle = True
                 if process(text) :
                     total_success += 1
+                else :
+                    print("Error at line {}.".format(line_counter))
+                    total_error += 1
             else :
                 # print(text)
                 if process(text) :
                     total_success += 1
+                else :
+                    print("Error at line {}.".format(line_counter))
+                    total_error += 1
     if (total_string == total_success) :
         print("The file is parsed successfully! No errors detected.")
+    else :
+        print("{} Error(s) detected on the file.".format(total_error))
     finish_time = time.datetime.now()
     elapsed_time = finish_time - start_time
-    print("Time elapsed : {} microseconds, or {} miliseconds".format(elapsed_time.microseconds, elapsed_time.microseconds/1000))
+    print("Time elapsed : {} seconds, {} microseconds".format(elapsed_time.seconds, elapsed_time.microseconds))
