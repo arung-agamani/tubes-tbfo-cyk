@@ -140,8 +140,8 @@ class Parser:
                 return trees """
         else:
             
-            # print("The given sentence is not contained in the language produced by the given grammar!")
-            # print(self.sentence)
+            print("The given sentence is not contained in the language produced by the given grammar!")
+            print(self.sentence)
             return False
 
 

@@ -6,6 +6,7 @@ S -> COM METHOD
 S -> COM
 S -> IM
 S -> METHOD
+S -> WITH
 COM -> 'COMMENT'
 IM -> 'FROM' A
 IM -> B
