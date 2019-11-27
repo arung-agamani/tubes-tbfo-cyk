@@ -6,8 +6,9 @@ def greet(name):
     """
 	print("Hello, " + name + ". Good morning!")
 while(True):
-    name = input("input your name : ")
+    name = input("Input your name : ")
     if (name != ""):
         greet(name)
     else:
         break
+    

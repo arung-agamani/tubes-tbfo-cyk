@@ -98,7 +98,9 @@ if __name__ == '__main__':
         print('LexerError at position %s' % err.pos)
     
     string_container = output.split('NEWLINE')
+    print(string_container)
     if_toggle = 0
+    multiline_toggle = False
     start_time = time.datetime.now()
     total_string = len(string_container)
     total_success = 0
@@ -107,41 +109,50 @@ if __name__ == '__main__':
     print("Parsing {} line(s) of code...".format(total_string))
     for text in string_container :
         line_counter += 1
-        if text == ' ' or text == '' :
-            print("",end='')
-            total_success += 1
+
+        if text.find('TRIPLEQUOTE') != -1 and multiline_toggle == False :
+                multiline_toggle = True
+                total_success += 1
+        elif (text.find('TRIPLEQUOTE') != -1) and multiline_toggle == True :
+                multiline_toggle = False
+                total_success += 1
         else :
-            if text.find(' IF') != -1 :
-                if_toggle += 1
-                if process(text) :
-                    total_success += 1
+            if (text == ' ' or text == ''):
+                print("",end='')
+                total_success += 1
+            elif multiline_toggle == False :
+                if text.find(' IF') != -1 :
+                    if_toggle += 1
+                    if process(text) :
+                        total_success += 1
+                    else :
+                        print("Error at line {}.".format(line_counter))
+                        total_error += 1
+                elif text.find('ELIF') != -1 :
+                    if if_toggle > 0 :
+                        text = 'ELIFTOK' + text
+                    if process(text) :
+                        total_success += 1
+                    else :
+                        print("Error at line {}.".format(line_counter))
+                        total_error += 1
+                elif text.find('ELSE') != -1 :
+                    if if_toggle > 0 :
+                        text = 'ELIFTOK' + text
+                    if_toggle -= 1
+                    if process(text) :
+                        total_success += 1
+                    else :
+                        print("Error at line {}.".format(line_counter))
+                        total_error += 1
                 else :
-                    print("Error at line {}.".format(line_counter))
-                    total_error += 1
-            elif text.find('ELIF') != -1 :
-                if if_toggle > 0 :
-                    text = 'ELIFTOK' + text
-                if process(text) :
-                    total_success += 1
-                else :
-                    print("Error at line {}.".format(line_counter))
-                    total_error += 1
-            elif text.find('ELSE') != -1 :
-                if if_toggle > 0 :
-                    text = 'ELIFTOK' + text
-                if_toggle -= 1
-                if process(text) :
-                    total_success += 1
-                else :
-                    print("Error at line {}.".format(line_counter))
-                    total_error += 1
-            else :
-                if process(text) :
-                    total_success += 1
-                else :
-                    print("Error at line {}.".format(line_counter))
-                    total_error += 1
-    if (total_string == total_success) :
+                    if process(text) :
+                        total_success += 1
+                    else :
+                        print("Error at line {}.".format(line_counter))
+                        total_error += 1
+    
+    if (total_error == 0) :
         print("The file is parsed successfully! No errors detected.")
     else :
         print("{} Error(s) detected on the file.".format(total_error))

@@ -12,8 +12,10 @@ if (not(variavleBoolean)):
         elif False:
             pass
         else:
-            # comment
-            pass
+            fr = 'asdasdasd'
+            var = 100
+            print(fr+'frfe')
+            print(fr, asd, asdasd, var)
 def function(sentences, b):
     c = False
     if (len(sentences) > 5 and b) or c:
