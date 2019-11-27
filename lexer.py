@@ -98,7 +98,7 @@ if __name__ == '__main__':
         print('LexerError at position %s' % err.pos)
     
     string_container = output.split('NEWLINE')
-    print(string_container)
+    # print(string_container)
     if_toggle = 0
     multiline_toggle = False
     start_time = time.datetime.now()
