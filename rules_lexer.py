@@ -49,7 +49,7 @@ rules = [
     (r':', 'COLON'),
     (r';', 'SEMICOLON'),
     (r'\n', 'NEWLINE'),
-    (r' ', 'WHITESPACE'),
+    (r'\s', 'WHITESPACE'),
     (r'\d+','NUMBER'),
     (r'\d+.+\d','FLOAT'),
     (r'[a-zA-Z_]+[\da-zA-Z_0-9]*','IDENTIFIER'),
@@ -71,4 +71,7 @@ rules = [
     (r'>', 'GREATER_THAN'),
     (r'<=', 'LESS_OR_EQUAL_THAN'),
     (r'<', 'LESS_THAN'),
+
+    # random case
+    (r'\w', 'NULL'),
 ]

@@ -19,6 +19,8 @@ def get_rule_category(rule):
         return BINARY_RULE_KEY
     else:
         return 5
-    print (fr + 'fr123')
-    len((4 == ( 4 + 1 )))
-    
+    fr = 'jones'
+    print (fr+'ishandsome')
+    print(fr,'is','handsome')
+    print(3*534+32)
+    print(len((4 == ( 4 + 1 ))))

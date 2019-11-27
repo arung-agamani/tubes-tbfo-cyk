@@ -1,6 +1,6 @@
 import os.path
 import argparse
-import grammar_converter
+import grammarConverter as grammar_converter
 
 
 class Node:
