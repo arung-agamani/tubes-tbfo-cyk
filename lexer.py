@@ -4,12 +4,11 @@ from rules_lexer import rules
 import cyk_parser as parser
 import datetime as time
 
+input_file = input("Input file to check : ")
 
-file_path = './input_file.txt'
-
+file_path = './' + input_file
 file = open(file_path, 'r')
 text = file.read()
-
 
 class Token(object):
     def __init__(self, type, val, pos):
@@ -77,6 +76,7 @@ class Lexer(object):
             yield tok
 
 CYK = parser.Parser('grammar.txt', " COMMENT ")
+
 def process(sentence) :
     CYK.__call__(sentence)
     CYK.parse()
@@ -86,7 +86,6 @@ if __name__ == '__main__':
 
     lx = Lexer(rules, skip_whitespace=False)
     lx.input(text)
-
     output = ''
 
     try:
@@ -99,11 +98,7 @@ if __name__ == '__main__':
         print('LexerError at position %s' % err.pos)
     
     string_container = output.split('NEWLINE')
-    # print("Splitted string : ")
-    # print(string_container)
     if_toggle = 0
-
-    a_string = " COMMENT "
     start_time = time.datetime.now()
     total_string = len(string_container)
     total_success = 0
@@ -152,4 +147,4 @@ if __name__ == '__main__':
         print("{} Error(s) detected on the file.".format(total_error))
     finish_time = time.datetime.now()
     elapsed_time = finish_time - start_time
-    print("Time elapsed : {} seconds, {} microseconds".format(elapsed_time.seconds, elapsed_time.microseconds))
+    print("Time elapsed : {}.{} seconds".format(elapsed_time.seconds, elapsed_time.microseconds//1000))
