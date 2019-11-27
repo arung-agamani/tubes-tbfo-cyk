@@ -1,6 +1,4 @@
-def abc():
-    def aaa():
-        print("astagfirullah")
-    aaa()
-
-abc()
+a = """ asdf 
+    asdfasdf
+    """
+print(a)
